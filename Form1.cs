@@ -594,11 +594,44 @@ namespace GetName
             {
                  MessageBox.Show(this, "请检查路径！");//注意不能在静态类中使用
                 return;
-            } 
+            }
+
+            if (chkFullDir.Checked)
+            {
+                string folderPath = txtFolderPath.Text;
+
+                if (Directory.Exists(folderPath))
+                {
+                    try
+                    {
+                        // Get all directories in the specified path
+                        string[] directories = Directory.GetDirectories(folderPath);
+
+                        // Clear the TextBox before adding new content
+                        txt1.Clear();
+
+                        // Append each directory path to the TextBox
+                        foreach (string directory in directories)
+                        {
+                            txt1.AppendText(directory + Environment.NewLine);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("检查指定目录是否存在！");
+                }
+                return;
+
+            }
 
 
 
-                txt1.Clear();
+            txt1.Clear();
 
             //call worker
             if (backgroundWorker1.IsBusy == false)
@@ -1041,6 +1074,54 @@ namespace GetName
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             this.txtFolderPath.Text = files[0];
+            if (chkFullDir.Checked)
+            {
+                string folderPath = txtFolderPath.Text;
+
+                if (Directory.Exists(folderPath))
+                {
+                    try
+                    {
+                        // Get all directories in the specified path
+                        string[] directories = Directory.GetDirectories(folderPath);
+
+                        // Clear the TextBox before adding new content
+                        txt1.Clear();
+
+                        // Append each directory path to the TextBox
+                        foreach (string directory in directories)
+                        {
+                            txt1.AppendText(directory + Environment.NewLine);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("检查指定目录是否存在！");
+                }
+
+            }
+        }
+
+        private void txt1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            // Get the index of the line where the mouse was double-clicked
+            int index = txt1.GetLineFromCharIndex(txt1.GetCharIndexFromPosition(e.Location));
+
+            if (index >= 0)
+            {
+                // Get the content of the clicked line
+                string line = txt1.Lines[index];
+                // Trim leading and trailing whitespace
+                string trimmedLine = line.Trim();
+
+                // Copy to clipboard
+                Clipboard.SetText(trimmedLine);
+            }
         }
     }
 }

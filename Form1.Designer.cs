@@ -80,6 +80,7 @@
             this.numericUpDownWrap = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.btnDel = new System.Windows.Forms.Button();
+            this.chkFullDir = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWrap)).BeginInit();
             this.SuspendLayout();
@@ -111,6 +112,7 @@
             this.txt1.TextChanged += new System.EventHandler(this.txt1_TextChanged);
             this.txt1.DragDrop += new System.Windows.Forms.DragEventHandler(this.txt1_DragDrop);
             this.txt1.DragEnter += new System.Windows.Forms.DragEventHandler(this.txt1_DragEnter);
+            this.txt1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txt1_MouseDoubleClick);
             // 
             // btnCopy
             // 
@@ -127,7 +129,7 @@
             this.chkExtension.AutoSize = true;
             this.chkExtension.Checked = true;
             this.chkExtension.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkExtension.Location = new System.Drawing.Point(23, 100);
+            this.chkExtension.Location = new System.Drawing.Point(23, 124);
             this.chkExtension.Name = "chkExtension";
             this.chkExtension.Size = new System.Drawing.Size(60, 16);
             this.chkExtension.TabIndex = 3;
@@ -257,8 +259,8 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 12);
             this.label1.TabIndex = 13;
-            this.label1.Text = "V3.5";
-            this.toolTip1.SetToolTip(this.label1, "2023.08.19 文件夹名");
+            this.label1.Text = "V3.6";
+            this.toolTip1.SetToolTip(this.label1, "2024-9-8 获取目录完整地址（获取目录打开后）");
             // 
             // btnFilter
             // 
@@ -526,13 +528,23 @@
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
+            // chkFullDir
+            // 
+            this.chkFullDir.AutoSize = true;
+            this.chkFullDir.Location = new System.Drawing.Point(25, 88);
+            this.chkFullDir.Name = "chkFullDir";
+            this.chkFullDir.Size = new System.Drawing.Size(72, 16);
+            this.chkFullDir.TabIndex = 38;
+            this.chkFullDir.Text = "获取目录";
+            this.chkFullDir.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
-            this.AcceptButton = this.btnGetName;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(759, 581);
+            this.Controls.Add(this.chkFullDir);
             this.Controls.Add(this.lblGetFolderN);
             this.Controls.Add(this.btnDel);
             this.Controls.Add(this.numericUpDownWrap);
@@ -640,6 +652,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Label lblGetFolderN;
+        private System.Windows.Forms.CheckBox chkFullDir;
     }
 }
 
